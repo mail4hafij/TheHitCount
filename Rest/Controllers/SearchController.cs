@@ -17,9 +17,11 @@ namespace Rest.Controllers
     {
         private readonly ILogger _logger;
         private readonly IHitCountService _hitCountService;
+        private readonly IConfiguration _configuration;
 
-        public SearchController(ILogger<SearchController> logger, IHitCountService hitCountService) 
+        public SearchController(IConfiguration configuration, ILogger<SearchController> logger, IHitCountService hitCountService) 
         {
+            _configuration = configuration;
             _logger = logger;
             _hitCountService = hitCountService;
         }
@@ -36,7 +38,7 @@ namespace Rest.Controllers
             return resp;
             */
 
-
+            // Let's trigger the function app to orchestrate our search into different engines.
             Task<GetHitCountResp> r = TriggerOrchestration(new GetHitCountReq()
             {
                 Search = getHitCountForm.Search,
@@ -48,7 +50,7 @@ namespace Rest.Controllers
         private async Task<GetHitCountResp> TriggerOrchestration(GetHitCountReq req)
         {
             var client = new HttpClient();
-            var url = "http://localhost:7032/api/DurableFunction_HttpStart";
+            var url = _configuration["DurableFunctionUrl"]; ;
             var content = new StringContent(JsonConvert.SerializeObject(req), Encoding.UTF8, "application/json");
 
             var resp = await client.PostAsync(url, content);

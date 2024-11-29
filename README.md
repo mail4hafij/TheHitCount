@@ -17,7 +17,8 @@ The key ideas behind this projects are -
 
 I used -
 * Autofac framework for Dependency injection.
-* SerpApi for making search to different search engines. The free api token has some limitation (100 searches only 40 left).
+* SerpApi for making search to different search engines. The free api token has some limitation (100 searches only 24 left).
+
 
 ## How to run locally
 ### way 1

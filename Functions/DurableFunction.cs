@@ -137,13 +137,22 @@ namespace Functions
             string instanceId = await starter.StartNewAsync("DurableFunction", data);
             log.LogInformation("Started orchestration with ID = '{instanceId}'.", instanceId);
 
+
+
             while (true)
             {
                 var status = starter.GetStatusAsync(instanceId);
-                if(status.IsCompleted)
+                if(status.Result.RuntimeStatus == OrchestrationRuntimeStatus.Completed)
                 {
                     return status.Result.Output.ToObject<GetHitCountResp>();
                 }
+                else if(status.Result.RuntimeStatus == OrchestrationRuntimeStatus.Failed)
+                {
+                    throw new Exception($"Orchestration failed: {status.Exception.Message}");
+                }
+
+                // Optional: Add delay to avoid hitting the API too frequently
+                await Task.Delay(1000);
             }
         }
     }
