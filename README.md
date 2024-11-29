@@ -1,5 +1,5 @@
 # TheHitCount
-This service should make a search against two or more search engines (e.g., Google, Bing, Yahoo, Twitter, Web Search, Algolia, AltaVista…) and present the total number of search hits from each search engine. If the user enters several words, this service should make a search for each word, summarize the number of hits, and then present the sum from each search engine.
+This solution should make a search against two or more search engines (e.g., Google, Bing, Yahoo, Twitter, Web Search, Algolia, AltaVista…) and present the total number of search hits from each search engine. If the user enters several words, this solution should make a search for each word, summarize the number of hits, and then present the sum from each search engine.
 
 ## Projects
 There are 5 projects in this solution
