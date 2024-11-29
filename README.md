@@ -8,7 +8,7 @@ There are 5 projects in this solution
 2. **Rest**: A simple rest api that accepts post request to make a search.
 3. **Core**: Implements the HitCountService. All the logics are written here.
 4. **Functions**: Implements a Durable Funciton to orchestrate search for different search engines.
-5. **Common**: Common dependency for the other project.
+5. **Common**: Common dependency for other projects.
 
 The key ideas behind this projects are -
 * Seperation of concerns.
@@ -22,7 +22,9 @@ I used -
 
 ## How to run locally
 ### way 1
-Run the web project. 
+Run the web project.
+
+**Conceptual model**
 
 <img src="hitcount.png" />
 
@@ -40,6 +42,8 @@ Run the Rest and the funciton app projects together. The rest project has a swag
 3. Start with storage on disk. Data will not be lost, but must be restarted after reboot. This one uses c:\Data\azurite to store data.
 
 ```  docker run -p 10000:10000 -p 10001:10001 -v c:/Data/azurite:/data mcr.microsoft.com/azure-storage/azurite ``` 
+
+**Conceptual model**
 
 <img src="function.png" />
 
