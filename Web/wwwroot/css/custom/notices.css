@@ -1,0 +1,70 @@
+/* 5.5 - Alerts & Messages */
+.msg {
+  border: solid 1px #cccccc;
+  padding: 10px;
+  margin: 0 0 20px 0;
+}
+
+.msg p,
+.blog-content .msg p {
+  margin: 0 !important;
+}
+
+.info {
+  background: url(images/msg_default.png) 10px center no-repeat #fff;
+  color: #424242;
+  padding: 10px 10px 10px 55px;
+  margin: 0 0 30px 0;
+  border: #dee0e0 1px solid;
+  line-height: 25px;
+}
+
+.info a {
+  color: #424242;
+  text-decoration: underline;
+}
+
+.notice {
+  background: url(images/msg_notice.png) 10px center no-repeat #fff;
+  color: #b3a437;
+  padding: 10px 10px 10px 55px;
+  margin: 0 0 30px 0;
+  border: solid 1px #ffd324;
+  line-height: 25px;
+  font-weight: bold;
+}
+
+.notice a {
+  color: #b3a437;
+  text-decoration: underline;
+}
+
+.success {
+  background: url(images/msg_success.png) 10px center no-repeat #fff;
+  color: #64ae23;
+  padding: 10px 10px 10px 55px;
+  margin: 0 0 30px 0;
+  border: solid 1px #19ff2c;
+  line-height: 25px;
+  font-weight: bold;
+}
+
+.success a {
+  color: #64ae23;
+  text-decoration: underline;
+}
+
+.error {
+  background: url(images/msg_fail.png) 10px center no-repeat #fff;
+  color: #c83f39;
+  padding: 10px 10px 10px 55px;
+  margin: 0 0 30px 0;
+  border: solid 1px #fbc2c4;
+  line-height: 25px;
+  font-weight: bold;
+}
+
+.error a {
+  color: #c83f39;
+  text-decoration: underline;
+}

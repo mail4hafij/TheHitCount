@@ -1,0 +1,9 @@
+﻿@model GetHitCountForm;
+
+<div id="showmsg" asp-validation-summary="All"></div>
+
+<!-- The form -->
+<form class="example" action="/Home/Search" method="post">
+    <input type="text" placeholder="Keywords.." name="search" asp-for="Search">
+    <button name="jsonsubmit" type="submit"><i class="fa fa-search"></i>Search</button>
+</form>

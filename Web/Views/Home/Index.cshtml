@@ -1,0 +1,42 @@
+﻿@using Common.Contract.Messaging
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">The Hit Count</h1>
+    
+    
+    @* Search *@
+    @await Html.PartialAsync("_Search")
+
+
+    @{
+        // Taking a lazy approach to show the results...
+        if(TempData["resp"] != null)
+        {
+            var resp = JsonConvert.DeserializeObject<GetHitCountResp>(TempData["resp"].ToString());
+            if (resp != null)
+            {
+                <div class="clear">&nbsp;</div>
+
+                <table class="example">
+                    <thead><tr><th>Engine</th><th>Hits</th></tr></thead>
+                    <tbody>
+                        @foreach (KeyValuePair<string, List<long>> entry in resp.Hits)
+                        {
+                            <tr>
+                                <td>@entry.Key</td>
+                                <td>@entry.Value.Sum()</td>
+                            </tr>    
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    }
+
+
+</div>
