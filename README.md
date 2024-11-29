@@ -48,6 +48,6 @@ Run the Rest and the funciton app projects together. The rest project has a swag
 <img src="function.png" />
 
 ## TODO
-If time permits I should add project reference 'core' to the function app project, so that we can use the SerpService inside the function app and get rid off some duplicate logic. 
+If time permits I should add project reference 'core' to the function app project, so that I can use the SerpService inside the function app and get rid off some duplicate logic. 
 
 
