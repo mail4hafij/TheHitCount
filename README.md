@@ -8,16 +8,16 @@ There are 5 projects in this solution
 2. **Rest**: A simple rest api that accepts post request to make a search.
 3. **Core**: Implements the HitCountService. All the logics are written here.
 4. **Functions**: Implements a Durable Funciton to orchestrate search for different search engines.
-5. **Common**: Common dependency for other projects.
+5. **Common**: Common dependency for all the projects.
 
-The key ideas behind this projects are -
+The key ideas behind these projects are -
 * Seperation of concerns.
 * Use concurrently running tasks to make search quicker (way 1).
 * Use orchestration mechanism to make search quicker (way 2).
 
 I used -
 * Autofac framework for Dependency injection.
-* SerpApi for making search to different search engines. The free api token has some limitation (100 searches only 24 left). I have used a lot to test. Maybe you can sign in for SerpApi for free and generate an api_Key. Then replace the api_key in three places (appsettings for rest and web projects, localsettings for the function app project)  
+* SerpApi https://serpapi.com for making search to different search engines. The free api token has some limitation (100 searches only 20 left). I have used a lot to test. Maybe you can sign in for SerpApi for free and generate an api_Key. Then replace the api_key in three places (appsettings for rest and web projects, localsettings for the function app project)  
 
 
 ## How to run locally
@@ -47,7 +47,5 @@ Run the Rest and the funciton app projects together. The rest project has a swag
 
 <img src="function.png" />
 
-## TODO
-If time permits I should add project reference 'core' to the function app project, so that I can use the SerpService inside the function app and get rid off some duplicate logic. 
 
 
