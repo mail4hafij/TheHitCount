@@ -14,16 +14,19 @@ using Newtonsoft.Json;
 using System.Linq;
 using Common.Constant;
 using System;
+using Core.Integrations;
 
 namespace Functions
 {
     public class DurableFunction
     {
         private readonly IConfiguration _configuration;
+        private readonly ISerpService _serpService;
 
-        public DurableFunction(IConfiguration configuration)
+        public DurableFunction(IConfiguration configuration, ISerpService serpService)
         {
             _configuration = configuration;
+            _serpService = serpService;
         }
 
         [FunctionName("DurableFunction")]
@@ -87,40 +90,13 @@ namespace Functions
             var keywords = search.Split(' ');
             foreach (var keyword in keywords)
             {
-                tasks.Add(GetSerpHitCount(queryKey, keyword, engine));
+                tasks.Add(_serpService.GetHitCount(queryKey, keyword, engine));
             }
 
             // Run the tasks concurrently
             long[] results = await Task.WhenAll(tasks);
             return results.ToList();
         }
-
-        public async Task<long> GetSerpHitCount(string queryKey, string keyword, string engine)
-        {
-            var httpClient = new HttpClient();
-            var baseUrl = _configuration["SerpBaseUrl"];
-            var apiKey = _configuration["SerpApiKey"];
-
-            var requestUrl = $"{baseUrl}?{queryKey}={Uri.EscapeDataString(keyword)}&api_key={apiKey}&engine={engine.ToLower()}";
-            var response = await httpClient.GetAsync(requestUrl);
-
-            if (!response.IsSuccessStatusCode)
-                throw new Exception($"SerpAPI error: {response.ReasonPhrase}");
-
-            var content = await response.Content.ReadAsStringAsync();
-            var json = JObject.Parse(content);
-
-            try
-            {
-                return json["search_information"]["total_results"].Value<long>();
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
-
 
         [FunctionName("DurableFunction_HttpStart")]
         public async Task<GetHitCountResp> HttpStart(

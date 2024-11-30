@@ -28,7 +28,7 @@ namespace Rest.Controllers
 
         [Route("api/Search")]
         [HttpPost]
-        public GetHitCountResp CreateDoor([FromBody] GetHitCountForm getHitCountForm)
+        public GetHitCountResp Search([FromBody] GetHitCountForm getHitCountForm)
         {
             /*
             var resp = _hitCountService.GetHitCount(new GetHitCountReq()

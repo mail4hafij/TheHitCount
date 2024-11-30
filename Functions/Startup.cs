@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Core.IoC;
 using Functions;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Azure.WebJobs.Host;
@@ -37,6 +38,8 @@ namespace Function
             // Autofac START
             // All the functions.
             containerBuilder.RegisterAssemblyTypes(typeof(Startup).Assembly).InNamespaceOf<DurableFunction>();
+
+            CoreContainer.Bind(containerBuilder);
             // Autofac END
 
 
